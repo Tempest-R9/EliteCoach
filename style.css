@@ -1,0 +1,137 @@
+:root {
+    --bg: #050505;
+    --text: #F5F5F5;
+    --accent: #D4FF00; 
+    --grey: #121212;
+    --border: rgba(255, 255, 255, 0.08);
+}
+html {
+    scroll-behavior: smooth;
+    /* This ensures that when you click a link, it slides gracefully */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+/* --- LOADER --- */
+#loader { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; }
+.loader-wrapper { width: 300px; }
+.count { font-family: 'Syncopate'; font-size: 1.5rem; color: var(--accent); display: block; text-align: right; margin-bottom: 10px; }
+.loader-track { width: 100%; height: 2px; background: rgba(212, 255, 0, 0.1); overflow: hidden; }
+.loader-bar { width: 0%; height: 100%; background: var(--accent); box-shadow: 0 0 20px var(--accent); transition: 0.1s; }
+
+/* --- LIQUID CURSOR --- */
+.cursor { width: 8px; height: 8px; background: var(--accent); position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+.cursor-blur { width: 60px; height: 60px; background: rgba(212, 255, 0, 0.15); filter: blur(25px); position: fixed; border-radius: 50%; pointer-events: none; z-index: 9998; transition: 0.15s ease-out; }
+
+/* --- NAVIGATION --- */
+#navbar { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 40px 5%; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+#navbar.shrink { background: rgba(5,5,5,0.8); backdrop-filter: blur(20px); padding: 20px 5%; border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Syncopate'; font-size: 1.1rem; text-decoration: none; color: #fff; font-weight: 700; }
+.logo span { color: var(--accent); }
+.nav-links a { text-decoration: none; color: #fff; font-size: 0.85rem; font-weight: 600; margin-left: 40px; letter-spacing: 1px; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta { background: var(--accent); border: none; padding: 12px 25px; font-family: 'Syncopate'; font-size: 0.65rem; font-weight: 900; }
+
+/* --- HERO --- */
+.hero { height: 100vh; display: flex; align-items: center; padding: 0 5%; position: relative; }
+.hero-content { z-index: 2; width: 100%; }
+.est-tag { font-family: 'Syncopate'; font-size: 0.7rem; color: var(--accent); letter-spacing: 5px; margin-bottom: 25px; }
+.hero-content h1 { font-family: 'Syncopate'; font-size: clamp(3rem, 9vw, 7rem); line-height: 0.85; letter-spacing: -4px; }
+.outline { color: transparent; -webkit-text-stroke: 1px #fff; }
+.hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 50px; }
+.hero-bottom p { max-width: 450px; color: #777; font-size: 1.1rem; line-height: 1.6; }
+.scroll-btn { color: #fff; text-decoration: none; font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 2px; }
+.hero-bg { position: absolute; inset: 0; z-index: 1; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) brightness(0.25); }
+
+/* --- 3D SLIDER ENGINE --- */
+.slider-section { padding: 150px 0; background: #000; overflow: hidden; }
+.section-header { padding: 0 5%; margin-bottom: 150px; }
+.section-header h2 { font-family: 'Syncopate'; font-size: 3rem; margin-top: 10px; }
+.slider-stage { height: 600px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; perspective: 1500px; }
+.card-container { position: relative; width: 350px; height: 500px; transform-style: preserve-3d; }
+.slider-card { position: absolute; width: 100%; height: 100%; border-radius: 30px; overflow: hidden; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.1); }
+.slider-card img { width: 100%; height: 100%; object-fit: cover; }
+.card-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; color: #fff; }
+.card-overlay h3 { font-family: 'Syncopate'; color: var(--accent); font-size: 0.9rem; }
+
+/* --- CONTACT REFINED --- */
+.contact-wrapper { display: flex; gap: 80px; padding: 120px 5%; border-top: 1px solid var(--border); }
+.contact-left { flex: 1; }
+.contact-left h1 { font-family: 'Syncopate'; font-size: clamp(4rem, 10vw, 9rem); line-height: 0.8; margin-top: 20px; }
+.social-links { margin-top: 60px; display: flex; flex-direction: column; gap: 15px; }
+.social-links a { color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; opacity: 0.4; transition: 0.3s; }
+.social-links a:hover { opacity: 1; color: var(--accent); }
+.contact-right { flex: 1.2; background: var(--grey); padding: 60px; border-radius: 50px; }
+.form-group { margin-bottom: 35px; border-bottom: 1px solid #222; }
+.form-group label { font-size: 0.6rem; color: var(--accent); font-weight: 900; letter-spacing: 2px; }
+.form-group input, .form-group textarea { width: 100%; background: none; border: none; color: #fff; padding: 15px 0; outline: none; font-size: 1.1rem; font-family: 'Space Grotesk'; }
+.submit-btn { width: 100%; background: var(--accent); color: #000; padding: 25px; border: none; font-family: 'Syncopate'; font-weight: 900; font-size: 0.8rem; margin-top: 20px; }
+/* --- THE ABOUT SECTION --- */
+.about-section {
+    padding: 160px 5%;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50/50 */
+    gap: 100px;
+    align-items: start;
+}
+
+.about-text h2 {
+    font-family: 'Syncopate';
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.large-p {
+    font-size: 1.8rem;
+    font-family: 'Space Grotesk';
+    font-weight: 300;
+    line-height: 1.3;
+    color: #fff;
+    max-width: 500px;
+}
+
+/* --- THE STATS ROW --- */
+.stats-row {
+    display: flex;
+    gap: 60px;
+    margin-top: 80px;
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-box h3 {
+    font-family: 'Syncopate';
+    font-size: 4rem;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.stat-box span {
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Responsive Fix */
+@media (max-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .stats-row { flex-direction: column; gap: 40px; }
+}
